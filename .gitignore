@@ -33,3 +33,4 @@ aws-key*
 
 *.out
 *.info
+.terraform.lock.hcl
