@@ -1,0 +1,23 @@
+name: Terraform Apply
+on: workflow_dispatch
+env:
+  AWS_ACCESS_KEY_ID: ${{secrets.ACCESS_KEY_ID}}
+  AWS_SECRET_ACCESS_KEY: ${{secrets.SECRET_ACCESS_KEY}}
+  TF_VAR_aws_public_key: ${{secrets.AWS_PUBLIC_KEY}}
+
+  jobs:
+    terraform:
+      name: terraform
+      runs on: ubuntu-latest
+      defaults:
+        run:
+          shell: bash
+      steps:
+      - name: Checkout
+        users: actions/checkout@v2
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
